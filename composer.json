@@ -1,0 +1,29 @@
+{
+  "name": "creativados/cockpit",
+  "description": "PHP client api connect to cockpit server",
+  "keywords": [
+    "cockpit",
+    "client_api"
+  ],
+  "homepage": "https://github.com/vampireJSV/cockpit_client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Josevi Canet",
+      "email": "josevi@creativados.com",
+      "homepage": "http://creativados.com/",
+      "role": "Developer"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "guzzlehttp/guzzle": "~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "SammyK\\Skeleton\\": [
+        "src"
+      ]
+    }
+  }
+}
