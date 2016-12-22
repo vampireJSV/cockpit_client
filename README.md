@@ -40,10 +40,13 @@ Usage
 -----
 
 ``` php
-use SammyK\Skeleton;
+require __DIR__ . '/vendor/autoload.php';
 
-$skeleton = new Skeleton();
-echo $skeleton->echoPhrase('Hello, World!');
+$server = new Creativados\Cockpit_client\api( "http://domain.tld", "TOKEN_ID" );
+$server->getCockpit( MODULE_NAME, FUNCTION_NAME, ARRAY_PARAMETERS );
+$server->getRegions( REGION_NAME );
+$server->getGallery( GALLERY_NAME,BOOL_ADD_DOMAIN ) ;
+$server->getCollection( COLLECTION_NAME, ARRAY_FILTERS, SORT_OPTIONS, NUMBER_LIMIT_ELEMENTS, NUMBER_SKIP_ELEMENTS ) ;
 
 ```
 
