@@ -21,9 +21,7 @@
   },
   "autoload": {
     "psr-4": {
-      "SammyK\\Skeleton\\": [
-        "src"
-      ]
+      "Creativados\\Cockpit_client\\": "src"
     }
   }
 }

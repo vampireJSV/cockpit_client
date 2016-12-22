@@ -2,8 +2,8 @@ Package Skeleton
 ================
 
 [![Build Status](http://img.shields.io/travis/SammyK/package-skeleton.svg)](https://github.com/vampireJSV/cockpit_client)
-[![Total Downloads](http://img.shields.io/packagist/dm/sammyk/package-skeleton.svg)](https://packagist.org/packages/sammyk/package-skeleton)
-[![Latest Stable Version](http://img.shields.io/packagist/v/sammyk/package-skeleton.svg)](https://packagist.org/packages/sammyk/package-skeleton)
+[![Total Downloads](http://img.shields.io/packagist/dm/sammyk/package-skeleton.svg)](https://packagist.org/packages/creativados/cockpit)
+[![Latest Stable Version](http://img.shields.io/packagist/v/sammyk/package-skeleton.svg)](https://packagist.org/packages/creativados/cockpit)
 [![License](http://img.shields.io/badge/license-MIT-lightgrey.svg)](https://github.com/vampireJSV/cockpit_client/blob/master/LICENSE)
 
 
@@ -25,7 +25,7 @@ Add the package-skeleton package to your `composer.json` file.
 ``` json
 {
     "require": {
-        "sammyk/package-skeleton": "1.0.*"
+        "creativados/cockpit": "*"
     }
 }
 ```
@@ -33,7 +33,7 @@ Add the package-skeleton package to your `composer.json` file.
 Or via the command line in the root of your Laravel installation.
 
 ``` bash
-$ composer require "sammyk/package-skeleton:1.0*"
+$ composer require "creativados/cockpit:*"
 ```
 
 Usage
@@ -59,14 +59,14 @@ $ phpunit
 Contributing
 ------------
 
-Please see [CONTRIBUTING](https://github.com/SammyK/package-skeleton/blob/master/CONTRIBUTING.md) for details.
+Please see [CONTRIBUTING](https://github.com/vampireJSV/cockpit_client/blob/master/CONTRIBUTING.md) for details.
 
 
 Credits
 -------
 
-- [Sammy Kaye Powers](https://github.com/SammyK)
-- [All Contributors](https://github.com/SammyK/package-skeleton/contributors)
+- [Josevi canet](https://github.com/vampireJSV)
+- [Special thanks Samy Kaye](https://github.com/SammyK)
 
 
 License
