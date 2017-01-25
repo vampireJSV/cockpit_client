@@ -25,7 +25,7 @@ Add the package-skeleton package to your `composer.json` file.
 ``` json
 {
     "require": {
-        "creativados/cockpit": "*"
+        "creativados/cockpit": "@dev"
     }
 }
 ```
@@ -42,11 +42,13 @@ Usage
 ``` php
 require __DIR__ . '/vendor/autoload.php';
 
-$server = new Creativados\Cockpit_client\api( "http://domain.tld", "TOKEN_ID" );
+$server = new Creativados\Cockpit_client\api( "http://domain.tld", "TOKEN_ID", "LANGUAGE" );
 $server->getCockpit( MODULE_NAME, FUNCTION_NAME, ARRAY_PARAMETERS );
 $server->getRegions( REGION_NAME );
 $server->getGallery( GALLERY_NAME,BOOL_ADD_DOMAIN ) ;
+$server->getGallery( GALLERY_NAME,BOOL_ADD_DOMAIN ) ;
 $server->getCollection( COLLECTION_NAME, ARRAY_FILTERS, SORT_OPTIONS, NUMBER_LIMIT_ELEMENTS, NUMBER_SKIP_ELEMENTS ) ;
+$server->getCollectionMultilang( COLLECTION_NAME, ARRAY_FILTERS, SORT_OPTIONS, NUMBER_LIMIT_ELEMENTS, NUMBER_SKIP_ELEMENTS ) ;
 
 ```
 

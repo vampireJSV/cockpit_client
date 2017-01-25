@@ -10,6 +10,7 @@ class api {
 	private $server = null;
 	private $base = '';
 	private $token = '';
+	private $locale = '';
 	const API_URL_PATH = 'rest/api/';
 	const BASE_URL_KEY = 'base_url';
 
@@ -47,16 +48,26 @@ class api {
 	const MEDIA_OPTION_NAME_MODE_OPTION_BEST_FIT = 'best_fit';
 	const MEDIA_OPTION_NAME_MODE_OPTION_RESIZE = 'resize';
 
+	const DEFAULT_TEXT = 'default';
+
+	const STATIC_FIELDS = [
+		"modified",
+		"created",
+		"_id",
+		"_uid"
+	];
+
 	/**
 	 * Create a new API instance
 	 */
-	public function __construct( $base, $token ) {
+	public function __construct( $base, $token, $locale = self::DEFAULT_TEXT ) {
 
 		if ( substr( $base, - 1 ) != '/' ) {
 			$base = $base . '/';
 		}
-		$this->base  = $base;
-		$this->token = $token;
+		$this->base   = $base;
+		$this->token  = $token;
+		$this->locale = $locale;
 		$this->connect();
 
 	}
@@ -157,6 +168,11 @@ class api {
 		return $output;
 	}
 
+	public function getMetaCollection( $name ) {
+		return json_decode( $this->getCockpit( 'collections', 'get_collection',
+			[ "name" => $name ] ) );
+	}
+
 	/**
 	 * Get list elements Collection $name
 	 *
@@ -187,6 +203,51 @@ class api {
 		] );
 
 		return json_decode( $response->getBody()->getContents() );
+	}
+
+	public function getCollectionMultilang(
+		$name,
+		$filters = null,
+		$sort = null,
+		$limit = null,
+		$skip = null
+	) {
+
+		$output = [];
+		foreach ( $this->getCollection( $name, $filters, $sort, $limit, $skip ) as $element ) {
+			$output[] = $this->traslateOutput( $this->getMetaCollection( $name ), $element );
+		}
+
+		return $output;
+	}
+
+	private function traslateOutput( $metacollection, $collection ) {
+		$output = new \stdClass();
+		foreach ( self::STATIC_FIELDS as $field ) {
+			$output->{$field} = $collection->{$field};
+		}
+
+		foreach ( $metacollection->fields as $field ) {
+			$name_field             = $field->name;
+			$output->{$field->name} = $collection->{$name_field};
+			if ( $field->slug ) {
+				$output->{$field->name . '_slug'} = $collection->{$name_field . '_slug'};
+			}
+
+			if ( $this->locale != self::DEFAULT_TEXT && $field->localize ) {
+				$name_field = $name_field . '_' . $this->locale;
+				if ( $collection->{$name_field} != '' ) {
+					$output->{$field->name} = $collection->{$name_field};
+				}
+				if ( $field->slug && $collection->{$name_field . '_slug'} != '' ) {
+					$output->{$field->name . '_slug'} = $collection->{$name_field . '_slug'};
+				}
+			}
+
+
+		}
+
+		return $output;
 	}
 
 	/**
